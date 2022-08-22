@@ -2,7 +2,7 @@
 const pageNumError = 'Номер страницы вне диапазона от 1 до 10';
 const limitValueError = 'Лимит вне диапазона от 1 до 10';
 const pageLimitValueError = 'Номер страницы и лимит вне диапазона от 1 до 10';
-const picsumOutput = document.getElementById('output');
+const picsumOutput = document.getElementById('output'); // Очищаем фото
 
 
 function setError(errorMessage) {
@@ -16,6 +16,16 @@ function appendPhoto(url) {
     img.setAttribute('src', url);
     img.setAttribute('class', 'photo-list__photo');
     picsumOutput.appendChild(img);
+}
+
+function setStorage(data) {
+    // Добавляет результат запроса в localStorage
+    localStorage.setItem('photos', JSON.stringify(data));
+}
+
+function getStorageData() {
+    // Получает данные из localStorage
+    return JSON.parse(localStorage.getItem('photos'));
 }
 
 function sendRequest(event) {
@@ -46,10 +56,18 @@ function sendRequest(event) {
             })
             .then((data) => {
                 for (let i in data) {
-                    appendPhoto(data[i].download_url);
+                    appendPhoto(data[i].download_url); // Добавляем фото на страницу
                 }
+                setStorage(data); // Записываем полученные данные в localStorage
             })
     }
 }
 
 submitButton.addEventListener('click', sendRequest);
+window.addEventListener('load', () => {
+    // Срабатывает при загрузке страницы, добавляет последние просмотренные фото
+    const data = getStorageData();
+    for (let i in data) {
+        appendPhoto(data[i].download_url);
+    }
+})
