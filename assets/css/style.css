@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Nunito+Sans:wght@400;700&display=swap');
+
+
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1E1E1E;
+    font-family: 'Inconsolata', monospace;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.task-links {
+    color: #569cd6;
+}
+
+.task-links>ul {
+    list-style-type: none;
+}
+
+.task-wrapper {
+    background-color: #383B3D;
+    border-radius: 10px;
+    padding: 20px;
+    color: aliceblue;
+    text-align: center;
+    width: 800px;
+}
+
+.form-error {
+    color: red;
+}
+
+.photo-list {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.photo-list__photo {
+    max-width: 100%;
+    height: auto;
+}
